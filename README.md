@@ -1,55 +1,76 @@
-sudo singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon
-sudo singularity shell cinn.simg
+`sudo singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon`
 
+`sudo singularity shell cinn.simg`
 
-once inside
-ln -s /usr/bin/clang++-3.8 /usr/bin/clang++
-ln -s /usr/bin/clang-3.8 /usr/bin/clang
+## Configuration 
 
-all directories copied under
-cd /home
+once inside the singularity shell. You will need to set the following configurations. 
 
-cd /home/Janus
+`ln -s /usr/bin/clang++-3.8 /usr/bin/clang++`
 
-set janus_root in /home/scripts/janus_build_tool to /home/Janus and then run:
+`ln -s /usr/bin/clang-3.8 /usr/bin/clang`
 
-/home/scripts/janus_build_tool
+all directories were cloned and copied under `/home`. 
 
-cd /home/pin-3.13
-set path in /home/scripts/pin_build_tool and pin_run_tool for pin_root to /home/pin-3.13 and then run: 
-/home/scripts/pin_build_tool
+`export PATH=/home/scripts:/home/Janus/janus:$PATH`
 
-cd /home/dyninst-10.1.0
-c_LoadInsn and c_StoreInsn in instructionAPI/h/InstructionCategories.h in enum InsnCategory
-mkdir build
-cmake . -DCMAKE_INSTALL_PREFIX=build
-make install -j8
-cp -r /home/dyn-cinnamon/MyDSLTool /home/dyninst-10.1.0/examples/
-set dyn_root in /home/scripts/dyn_build_tool and dyn_run_tool to /home/dyninst-10.1.0
+### Set up and configure Janus
 
-cd /home/Cinnamon
+`cd /home/Janus`
 
-in compileToJanus.py set JANUS_PATH=/home/Janus
-in compileToPin.py set PIN_PATH=/home/pin-3.13
-in compileToDyn.py set DYNINST_PATH=/home/dyninst-10.1.0
+set `janus_root` in `/home/scripts/janus_build_tool` to `/home/Janus` and then run:
 
-export PATH=/home/scripts:/home/Janus/janus:$PATH
+`janus_build_tool`
 
-make TARGET=janus
-./compileToJanus <test.dsl>
-janus_build_tool
-/home/Janus/janus/jdsl_run <target_binary>
+### Set up and configure Pin
 
-make TARGET=pin
-./compileToPin <test.dsl>
-pin_build_tool
-pin_run_tool <target_binary>
+`cd /home/pin-3.13`
 
-make TARGET=dyn
-./compileToDyn <test.dsl>
-dyn_build_tool
-dyn_run_tool <target_binary>
+set `pin_root` in `/home/scripts/pin_build_tool` and `pin_run_tool` to `/home/pin-3.13` and then run: 
+
+`pin_build_tool`
+
+### Set up and configure Dyninst
+`cd /home/dyninst-10.1.0`
+`c_LoadInsn` and `c_StoreInsn` in `instructionAPI/h/InstructionCategories.h` in `enum InsnCategory{}`
+`mkdir build`
+`cmake . -DCMAKE_INSTALL_PREFIX=build`
+`make install -j8`
+`cp -r /home/dyn-cinnamon/MyDSLTool /home/dyninst-10.1.0/examples/`
+set `dyn_root` in `/home/scripts/dyn_build_tool` and `dyn_run_tool` to `/home/dyninst-10.1.0`
+
+### Set up and configure Cinnamon
+
+`cd /home/Cinnamon`
+
+in `compileToJanus.py` set `JANUS_PATH=/home/Janus`
+in `compileToPin.py` set `PIN_PATH=/home/pin-3.13`
+in `compileToDyn.py` set `DYNINST_PATH=/home/dyninst-10.1.0`
+
+## Building and running tools with Cinnamon 
+
+### Build & run a tool with cinnamon targetting Janus
+`cd /home/Cinnamon`
+`make TARGET=janus`
+`./compileToJanus <test.dsl>`
+`janus_build_tool`
+`jdsl_run <target_binary>`
+
+### Build & run a tool with cinnamon targetting Pin
+`cd /home/Cinnamon`
+`make TARGET=pin`
+`./compileToPin <test.dsl>`
+`pin_build_tool`
+`pin_run_tool <target_binary>`
+
+### Build and run a tool with cinnamon targetting Dyninst
+`cd /home/Cinnamon`
+`make TARGET=dyn`
+`./compileToDyn <test.dsl>`
+`dyn_build_tool`
+`dyn_run_tool <target_binary>`
+
 
 If using spec benchmarks: 
-use 
-submit = pin_run_tool $command 
+add in your `.cfg` file
+`submit = pin_run_tool $command`
