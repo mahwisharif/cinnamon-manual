@@ -1,6 +1,11 @@
-`sudo singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon`
+## Bootstrapping OS and dependency installation using Singularity Container 
 
-`sudo singularity shell cinn.simg`
+You need to have [singularity](https://sylabs.io/guides/3.0/user-guide/quick_start.html) installed on your machine and should also have root access to run the images. 
+
+```
+sudo singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon
+sudo singularity shell cinn.simg
+```
 
 ## Configuration 
 
