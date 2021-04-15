@@ -1,17 +1,29 @@
 ## 1. Bootstrapping OS and dependency installation using Singularity Container 
 
-You need to have [singularity](https://sylabs.io/guides/3.0/user-guide/quick_start.html) installed on your machine and should also have root access to run the images. 
+**Pre-requisite**: You need to have [singularity](https://sylabs.io/guides/3.0/user-guide/quick_start.html) installed on your machine. 
 
+### Option 1: Download pre-built singulairty image:
 For singularity 2.x versions: 
 ```
-sudo singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon
-sudo singularity shell cinn.simg
+singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon
+singularity shell cinn.simg
 ```
 For singularity 3.x versions: 
 ```
 sudo singularity pull --name cinn.sif shub://mahwisharif/singularity-cinnamon
 sudo singularity shell cinn.sif
 ```
+
+### Option 2: Build singularity image from the recipe: 
+You will need to have root access on the machine to use this option: 
+
+```
+git clone https://github.com/mahwisharif/singularity-cinnamon.git`
+cd singularity-cinnamon
+sudo singularity build cinn.simg Singularity    //or cinn.sif for singularity 3.x versions
+sudo singularity shell cinn.simg
+```
+
 
 ## 2.Configuration 
 
@@ -23,7 +35,7 @@ ln -s /usr/bin/clang-3.8 /usr/bin/clang
 ```
 [`Cinnamon`](https://github.com/CompArchCam/Cinnamon) can currently target three different binary frameworks; [`Janus`](https://github.com/mahwisharif/Janus/tree/cinnamon), [`Intel Pin`](https://software.intel.com/content/www/us/en/develop/articles/pin-a-dynamic-binary-instrumentation-tool.html) and [`DynInst`](https://dyninst.org/dyninst).
 
-The were downloaded, cloned and copied under `/home`. 
+These were downloaded/cloned/copied under `/home` during bootstrap. 
 
 `export PATH=/home/scripts:/home/Janus/janus:/home/Cinnamon/Scripts:$PATH`
 
@@ -83,7 +95,7 @@ janus_build_tool
 jdsl_run <target_binary>
 ```
 
-If using spec benchmarks, add in your `.cfg` file
+If using spec benchmarks, add this line in your `.cfg` file
 
 `submit = jdsl_run $command`
 
@@ -98,7 +110,7 @@ pin_run_tool <target_binary>
 
 
 
-If using spec benchmarks, add in your `.cfg` file
+If using spec benchmarks, add this line in your `.cfg` file
 
 `submit = pin_run_tool $command`
 
@@ -112,13 +124,13 @@ dyn_build_tool
 dyn_run_tool <target_binary>
 ```
 
-If using spec benchmarks, add in your `.cfg` file
+If using spec benchmarks, add this line in your `.cfg` file
 
 `submit = dyn_run_tool $command`
 
 
 
-NOTE: If you just want to compile the cinnamon program e.g. `ins.dsl` and not yet intergate in target framework, run the following command from `/home/Cinnamon` after you have run the  build script for the respective target. This will generate a number of different files containing relevant code for the target framework:
+**NOTE**: If you just want to compile the cinnamon program e.g. `ins.dsl` and not yet intergate in target framework, run the following command from `/home/Cinnamon` after you have run the  build script for the respective target. This will generate a number of different files containing relevant code for the target framework:
 ```
 $ ./bdc tests/ins.dsl
 ```
