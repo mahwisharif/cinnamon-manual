@@ -32,45 +32,74 @@ set `pin_root` in `/home/scripts/pin_build_tool` and `pin_run_tool` to `/home/pi
 
 ### Set up and configure Dyninst
 `cd /home/dyninst-10.1.0`
+
 `c_LoadInsn` and `c_StoreInsn` in `instructionAPI/h/InstructionCategories.h` in `enum InsnCategory{}`
+
 `mkdir build`
+
 `cmake . -DCMAKE_INSTALL_PREFIX=build`
+
 `make install -j8`
+
 `cp -r /home/dyn-cinnamon/MyDSLTool /home/dyninst-10.1.0/examples/`
+
 set `dyn_root` in `/home/scripts/dyn_build_tool` and `dyn_run_tool` to `/home/dyninst-10.1.0`
+
 
 ### Set up and configure Cinnamon
 
 `cd /home/Cinnamon`
 
 in `compileToJanus.py` set `JANUS_PATH=/home/Janus`
+
 in `compileToPin.py` set `PIN_PATH=/home/pin-3.13`
+
 in `compileToDyn.py` set `DYNINST_PATH=/home/dyninst-10.1.0`
+
 
 ## Building and running tools with Cinnamon 
 
 ### Build & run a tool with cinnamon targetting Janus
 `cd /home/Cinnamon`
+
 `make TARGET=janus`
+
 `./compileToJanus <test.dsl>`
+
 `janus_build_tool`
+
 `jdsl_run <target_binary>`
+
+If using spec benchmarks, add in your `.cfg` file
+
+`submit = jdsl_run $command`
 
 ### Build & run a tool with cinnamon targetting Pin
 `cd /home/Cinnamon`
+
 `make TARGET=pin`
+
 `./compileToPin <test.dsl>`
+
 `pin_build_tool`
+
 `pin_run_tool <target_binary>`
+
+If using spec benchmarks, add in your `.cfg` file
+
+`submit = pin_run_tool $command`
 
 ### Build and run a tool with cinnamon targetting Dyninst
 `cd /home/Cinnamon`
+
 `make TARGET=dyn`
+
 `./compileToDyn <test.dsl>`
+
 `dyn_build_tool`
+
 `dyn_run_tool <target_binary>`
 
+If using spec benchmarks, add in your `.cfg` file
 
-If using spec benchmarks: 
-add in your `.cfg` file
-`submit = pin_run_tool $command`
+`submit = dyn_run_tool $command`
