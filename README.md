@@ -10,8 +10,8 @@ singularity shell cinn.simg
 ```
 For singularity 3.x versions: 
 ```
-sudo singularity pull --name cinn.sif shub://mahwisharif/singularity-cinnamon
-sudo singularity shell cinn.sif
+singularity pull --name cinn.sif shub://mahwisharif/singularity-cinnamon
+singularity shell cinn.sif
 ```
 
 ### Option 2: Build singularity image from the recipe: 
@@ -26,8 +26,7 @@ sudo singularity shell cinn.simg
 
 
 ## 2.Configuration 
-
-once inside the singularity shell. You will need to set the following configurations. 
+Once inside the singularity shell. You will need to set the following configurations. 
 
 ```
 ln -s /usr/bin/clang++-3.8 /usr/bin/clang++
