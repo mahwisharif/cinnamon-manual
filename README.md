@@ -12,7 +12,7 @@ once inside the singularity shell. You will need to set the following configurat
 
 all directories were cloned and copied under `/home`. 
 
-`export PATH=/home/scripts:/home/Janus/janus:$PATH`
+`export PATH=/home/scripts:/home/Janus/janus:/home/Cinnamon/Scripts:$PATH`
 
 ### Set up and configure Janus
 
@@ -33,7 +33,7 @@ set `pin_root` in `/home/scripts/pin_build_tool` and `pin_run_tool` to `/home/pi
 ### Set up and configure Dyninst
 `cd /home/dyninst-10.1.0`
 
-`c_LoadInsn` and `c_StoreInsn` in `instructionAPI/h/InstructionCategories.h` in `enum InsnCategory{}`
+open `instructionAPI/h/InstructionCategories.h` file and add `c_LoadInsn` and `c_StoreInsn` in `enum InsnCategory{}`
 
 `mkdir build`
 
@@ -50,11 +50,11 @@ set `dyn_root` in `/home/scripts/dyn_build_tool` and `dyn_run_tool` to `/home/dy
 
 `cd /home/Cinnamon`
 
-in `compileToJanus.py` set `JANUS_PATH=/home/Janus`
+in `Scripts/compileToJanus.py` set `JANUS_PATH=/home/Janus`
 
-in `compileToPin.py` set `PIN_PATH=/home/pin-3.13`
+in `Scripts/compileToPin.py` set `PIN_PATH=/home/pin-3.13`
 
-in `compileToDyn.py` set `DYNINST_PATH=/home/dyninst-10.1.0`
+in `Scripts/compileToDyn.py` set `DYNINST_PATH=/home/dyninst-10.1.0`
 
 
 ## Building and running tools with Cinnamon 
@@ -64,7 +64,7 @@ in `compileToDyn.py` set `DYNINST_PATH=/home/dyninst-10.1.0`
 
 `make TARGET=janus`
 
-`./compileToJanus <test.dsl>`
+`compileToJanus <test.dsl>`
 
 `janus_build_tool`
 
@@ -79,7 +79,7 @@ If using spec benchmarks, add in your `.cfg` file
 
 `make TARGET=pin`
 
-`./compileToPin <test.dsl>`
+`compileToPin <test.dsl>`
 
 `pin_build_tool`
 
@@ -94,7 +94,7 @@ If using spec benchmarks, add in your `.cfg` file
 
 `make TARGET=dyn`
 
-`./compileToDyn <test.dsl>`
+`compileToDyn <test.dsl>`
 
 `dyn_build_tool`
 
