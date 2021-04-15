@@ -1,4 +1,4 @@
-## Bootstrapping OS and dependency installation using Singularity Container 
+## 1. Bootstrapping OS and dependency installation using Singularity Container 
 
 You need to have [singularity](https://sylabs.io/guides/3.0/user-guide/quick_start.html) installed on your machine and should also have root access to run the images. 
 
@@ -7,7 +7,7 @@ sudo singularity pull --name cinn.simg shub://mahwisharif/singularity-cinnamon
 sudo singularity shell cinn.simg
 ```
 
-## Configuration 
+## 2.Configuration 
 
 once inside the singularity shell. You will need to set the following configurations. 
 
@@ -62,7 +62,7 @@ in `Scripts/compileToPin.py` set `PIN_PATH=/home/pin-3.13`
 in `Scripts/compileToDyn.py` set `DYNINST_PATH=/home/dyninst-10.1.0`
 
 
-## Building and running tools with Cinnamon 
+## 3. Building and running tools with Cinnamon 
 
 ### Build & run a tool with cinnamon targetting Janus
 ```
