@@ -38,7 +38,7 @@ These were downloaded/cloned/copied under `/home` during bootstrap.
 
 `export PATH=/home/scripts:/home/Janus/janus:/home/Cinnamon/Scripts:$PATH`
 
-### Set up and configure Janus
+### 2.1 Set up and configure Janus
 
 `cd /home/Janus`
 
@@ -48,7 +48,7 @@ set `janus_root` in `/home/scripts/janus_build_tool` to `/home/Janus` and then r
 
 Note: We are using 'cinnamon' branch of Janus which is checked out during bootstrap of singularity image. You can make sure that you are at the correct branch by running `git branch` in `/home/Janus` directory.
 
-### Set up and configure Pin
+### 2.2 Set up and configure Pin
 
 `cd /home/pin-3.13`
 
@@ -56,11 +56,11 @@ set `pin_root` in `/home/scripts/pin_build_tool` and `pin_run_tool` to `/home/pi
 
 `pin_build_tool`
 
-### Set up and configure Dyninst
+### 2.3 Set up and configure Dyninst
 
 `cd /home/dyninst-10.1.0`
 
-open `instructionAPI/h/InstructionCategories.h` file and add `c_LoadInsn` and `c_StoreInsn` in `enum InsnCategory{}`
+Open `instructionAPI/h/InstructionCategories.h` file and add `c_LoadInsn` and `c_StoreInsn` in `enum InsnCategory{}`
 
 ```
 mkdir build
@@ -71,8 +71,27 @@ cp -r /home/dyn-cinnamon/MyDSLTool /home/dyninst-10.1.0/examples/
 
 set `dyn_root` in `/home/scripts/dyn_build_tool` and `dyn_run_tool` to `/home/dyninst-10.1.0`
 
+**Alternatively**
 
-### Set up and configure Cinnamon
+There might be issues building `Dyninst` from within the container such as `make install -j8 ` command taking prohibitbly long time. If you see any such issue,  you can try to download and build `Dyninst` outside the container. 
+
+Get Dyninst v10.1.0
+
+``wget https://github.com/dyninst/dyninst/archive/v10.1.0.tar.gz``
+
+ ``tar xzvf v10.1.0.tar.gz``
+ 
+ You can get the relevant files for `Dyninst`  with placeholders, templates and utility libraries for `Cinnamon` from https://github.com/mahwisharif/dyn-cinnamon.git
+ 
+ ``git clone https://github.com/mahwisharif/dyn-cinnamon``
+ 
+ Copy ``MyDSLTool`` folder from ``dyn-cinnamon`` under ``your-path-to-dyninst-10.1.0-root-dir/examples``
+ 
+`` cp -r your-path-to-dyn-cinnamon/MyDSLTool your-path-to-dyninst-10.1.0-root-dir/examples/``
+
+Rest of the instructions to build or run would remain the same. You will just need to set the paths in relevant files and places accordingly. 
+
+### 2.4 Set up and configure Cinnamon
 
 `cd /home/Cinnamon`
 
@@ -85,7 +104,7 @@ in `Scripts/compileToDyn.py` set `DynPATH=/home/dyninst-10.1.0`, set `ParserPATH
 
 ## 3. Building and running tools with Cinnamon
 
-### Build & run a tool with cinnamon targetting Janus
+### 3.1 Build & run a tool with cinnamon targetting Janus
 ```
 cd /home/Cinnamon
 make TARGET=janus
@@ -98,7 +117,7 @@ If using spec benchmarks, add this line in your `.cfg` file
 
 `submit = jdsl_run $command`
 
-### Build & run a tool with cinnamon targetting Pin
+### 3.2 Build & run a tool with cinnamon targetting Pin
 ```
 cd /home/Cinnamon
 make TARGET=pin
@@ -114,7 +133,7 @@ If using spec benchmarks, add this line in your `.cfg` file
 `submit = pin_run_tool $command`
 
 
-### Build and run a tool with cinnamon targetting Dyninst
+### 3.3 Build and run a tool with cinnamon targetting Dyninst
 ```
 cd /home/Cinnamon
 make TARGET=dyn
