@@ -96,6 +96,8 @@ All the commands in this section will be run from inside the container.
 
 `export PATH=your-path-to/cinnamon-scripts:your-path-to/Janus/janus:your-path-to/Cinnamon/Scripts:$PATH`
 
+**NB**: You may skip section 2 altogether and run the commands in this section without using a singularity container. However, this may result in some build or configuration issues as required dependencies may not be installed on your system. 
+
 ### 3.1 Build & run a tool with cinnamon targetting Janus
 ```
 cd Cinnamon
