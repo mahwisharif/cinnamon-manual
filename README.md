@@ -50,7 +50,7 @@ mkdir -p pin-3.13 && tar xvzf pin-3.13-98189-g60a6ef199-gcc-linux.tar.gz --direc
 
 Everything required for Pin is contained within the `targets/Pin` directory in the Cinnamon repository.  Copy the `MyDSLTool` directory to `path-to-your-pin-root-dir/source/tools`, where `path-to-your-pin-root` should be self-explanatory.
 
-In the `pin_build_tool` and `pin_run_tool` scripts, set `pin_root` to point to the location you've extracted Pin to.  In the `compileToPin.py` script, set `PinPATH` to be the location that you have extracted Pin to and `ParserPATH` to be the location that you have cloned Cinnamon to.
+In the `pin_build_tool` and `pin_run_tool` scripts, set `pin_root` to point to the location you've extracted Pin to.  In the `compileToPin.py` script, set `PinPATH` to be `path-to-your-pin-root-dir/source/tools/MyDSLTool` and `ParserPATH` to be the location that you have cloned Cinnamon to.
 
 ### Download and set up Dyninst
 
@@ -65,7 +65,7 @@ Once extracted, add `c_LoadInsn` and `c_StoreInsn` into `enum InsnCategory` in `
 
 Everything else required for Dyninst is contained within the `targets/Dyninst` directory.  Copy the `MyDSLTool` directory to `path-to-your-dyn-root-dir/examples`, where `path-to-your-dyn-root-dir` should be self-explanatory.
 
-In the `dyn_build_tool` and `dyn_run_tool` scripts, set `dyn_root` to point to the location you've extracted Dyninst to.  In the `compileToDyn.py` script, set `DynPATH` to be the location you have extracted Dyninst to and `ParserPATH` to be the location that you have cloned Cinnamon to.
+In the `dyn_build_tool` and `dyn_run_tool` scripts, set `dyn_root` to point to the location you've extracted Dyninst to.  In the `compileToDyn.py` script, set `DynPATH` to be `path-to-your-dyn-root-dir/examples/MyDSLTool` and `ParserPATH` to be the location that you have cloned Cinnamon to.
 
 
 ## Bootstrapping an OS and dependency installation using a Singularity container
