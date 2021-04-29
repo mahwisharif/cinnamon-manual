@@ -27,12 +27,6 @@ Clone the Cinnamon repository:
 
 `git clone https://github.com/CompArchCam/Cinnamon.git`
 
-in `Scripts/compileToJanus.py` set `JanusPATH=your-path-to/Janus`, set `ParserPATH=your-path-to/Cinnamon`
-
-in `Scripts/compileToPin.py` set `PinPATH=your-path-to/pin-3.13`, set `ParserPATH=your-path-to/Cinnamon`
-
-in `Scripts/compileToDyn.py` set `DynPATH=your-path-to/dyninst-10.1.0`, set `ParserPATH=your-path-to/Cinnamon`
-
 ### Download and set up Janus
 
 You can get the Janus implementation with placeholders, templates and utility libraries for Cinnamon from the main Janus repository at https://github.com/timothymjones/Janus.git, then switch to the `cinnamon` branch.
