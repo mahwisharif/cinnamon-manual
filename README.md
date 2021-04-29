@@ -57,7 +57,7 @@ In the `pin_build_tool` and `pin_run_tool` scripts, set `pin_root` to point to t
 You can obtain Dyninst version 10.1.0 as follows:
 
 ```shell-session
-wget https://github.com/dyninst/dyninst/archive/v10.1.0.tar.gz``
+wget https://github.com/dyninst/dyninst/archive/v10.1.0.tar.gz
 tar xzvf v10.1.0.tar.gz
 ```
 
@@ -97,7 +97,7 @@ sudo singularity shell cinn.sif                // enter the container to run int
 All the commands in this section will be run from inside the container.
 
 ```shell-session
-export PATH=your-path-to/cinnamon-scripts:your-path-to/Janus/janus:your-path-to/Cinnamon/Scripts:$PATH
+export PATH=your-path-to/Janus/janus:your-path-to/Cinnamon/Scripts:$PATH
 ```
 
 **NB**: You may skip section 2 altogether and run the commands in this section without using a singularity container. However, this may result in some build or configuration issues as required dependencies may not be installed on your system.
@@ -138,13 +138,14 @@ submit = pin_run_tool $command
 
 ```shell-session
 cd Cinnamon
-make TARGET=dyn
+make TARGET=dyninst
 compileToDyn tests/<ins.dsl>
 ```
 
-The following commands build the Dyninst framework. You need to run this only once:
+The following commands build the Dyninst framework. You need to run this only once inside your `Dyninst` root dir:
 
 ```shell-session
+cd dyninst-10.1.0
 mkdir build
 cmake . -DCMAKE_INSTALL_PREFIX=build
 make install -j1
