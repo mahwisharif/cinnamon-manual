@@ -21,7 +21,7 @@ Cinnamon is released under an Apache licence.  Everything else in this repositor
 All the code and scripts for targeting Pin and Dyninst are available in the Cinnamon repository.  To target Janus, there is a branch in the Janus repository containing the relevant code.
 
 
-### Downlaod and set up Cinnamon
+### Download and set up Cinnamon
 
 Clone the Cinnamon repository:
 
